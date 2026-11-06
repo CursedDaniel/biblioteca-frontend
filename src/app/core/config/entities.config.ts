@@ -35,7 +35,10 @@ export const ENTITIES: Record<string, EntityConfig> = {
     { key: 'nacionalidad',     label: 'Nacionalidad',     type: 'text', required: true },
     { key: 'biografia',        label: 'Biografía',        type: 'text', required: true, hideInTable: true },
   ] },
-  categorias:  { label: 'Categorías',  endpoint: 'categorias',  idField: 'id_categoria',  route: 'categorias',  icon: '🏷️', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
+  categorias: { label: 'Categorías', endpoint: 'categorias', idField: 'id_categoria', route: 'categorias', icon: '🏷️', fields: [
+    { key: 'nombre',      label: 'Nombre',      type: 'text', required: true },
+    { key: 'descripcion', label: 'Descripción', type: 'text', required: true },
+  ] },
   editoriales: { label: 'Editoriales', endpoint: 'editoriales', idField: 'id_editorial',  route: 'editoriales', icon: '🏢', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
   ejemplares:  { label: 'Ejemplares',  endpoint: 'ejemplares',  idField: 'id_ejemplar',   route: 'ejemplares',  icon: '📖', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
   libros:      { label: 'Libros',      endpoint: 'libros',      idField: 'id_libro',      route: 'libros',      icon: '📚', fields: [{ key: 'titulo', label: 'Título', type: 'text', required: true }] },
