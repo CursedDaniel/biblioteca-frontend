@@ -84,6 +84,7 @@ export const ENTITIES: Record<string, EntityConfig> = {
     { key: 'fecha_limite',     label: 'Fecha límite',        type: 'date', required: true },
     { key: 'fecha_devolucion', label: 'Fecha de devolución', type: 'date', required: false },
     { key: 'estado',           label: 'Estado',     type: 'text', required: true },
-  ] };
+  ] },
+}; 
 
 export const ENTITY_LIST = Object.values(ENTITIES);
