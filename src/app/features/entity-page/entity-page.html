@@ -1,1 +1,81 @@
-<p>entity-page works!</p>
+<section class="head">
+  <h2>{{ cfg.label }}</h2>
+  <button class="btn primary" (click)="openCreate()">Nuevo</button>
+</section>
+
+@if (error()) { <p class="alert">{{ error() }}</p> }
+@if (loading()) { <p class="muted">Cargando…</p> }
+
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        @for (f of tableFields; track f.key) { <th>{{ f.label }}</th> }
+        <th class="actions">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (r of rows(); track r[cfg.idField]) {
+        <tr>
+          <td class="mono">{{ ('' + r[cfg.idField]).slice(0, 8) }}</td>
+          @for (f of tableFields; track f.key) { <td>{{ display(r, f) }}</td> }
+          <td class="actions">
+            <button class="btn" (click)="openView(r)">Ver</button>
+            <button class="btn" (click)="openEdit(r)">Editar</button>
+            <button class="btn danger" (click)="remove(r)">Eliminar</button>
+          </td>
+        </tr>
+      } @empty {
+        @if (!loading()) {
+          <tr><td [attr.colspan]="tableFields.length + 2">Sin registros</td></tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>
+
+@if (mode() !== 'closed') {
+  <aside class="panel">
+    <header>
+      <h3>{{ mode() === 'create' ? 'Nuevo' : mode() === 'edit' ? 'Editar' : 'Detalle' }} · {{ cfg.label }}</h3>
+      <button class="btn" (click)="close()">✕</button>
+    </header>
+
+    @if (mode() === 'view') {
+      <dl>
+        @for (f of cfg.fields; track f.key) {
+          <dt>{{ f.label }}</dt>
+          <dd>{{ display(selected()!, f) }}</dd>
+        }
+      </dl>
+    } @else {
+      <form [formGroup]="form" (ngSubmit)="save()">
+        @for (f of cfg.fields; track f.key) {
+          <label>
+            {{ f.label }}
+            @switch (f.type) {
+              @case ('select') {
+                <select [formControlName]="f.key">
+                  <option value="">— seleccionar —</option>
+                  @for (o of lookups()[f.key] ?? []; track $index) {
+                    <option [value]="o[f.lookup!.valueKey]">{{ o[f.lookup!.labelKey] }}</option>
+                  }
+                </select>
+              }
+              @case ('checkbox') { <input type="checkbox" [formControlName]="f.key" /> }
+              @default { <input [type]="f.type" [formControlName]="f.key" /> }
+            }
+            @if (form.get(f.key)?.touched && form.get(f.key)?.invalid) {
+              <small class="err">Campo obligatorio</small>
+            }
+          </label>
+        }
+        <div class="row">
+          <button type="button" class="btn" (click)="close()">Cancelar</button>
+          <button type="submit" class="btn primary">Guardar</button>
+        </div>
+      </form>
+    }
+  </aside>
+}
