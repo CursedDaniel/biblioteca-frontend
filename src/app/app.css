@@ -76,6 +76,7 @@ nav a.active { background: var(--accent); color: var(--ink); font-weight: 600; }
 .toggle {
   border: 1px solid var(--line);
   background: var(--paper);
+  color: var(--ink-text);
   border-radius: 8px;
   width: 36px;
   height: 36px;
