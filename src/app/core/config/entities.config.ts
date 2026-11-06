@@ -75,7 +75,15 @@ export const ENTITIES: Record<string, EntityConfig> = {
     { key: 'fecha_devolucion', label: 'Fecha de devolución', type: 'date', required: false },
     { key: 'estado',           label: 'Estado',     type: 'text', required: true },
   ] },
-  multas:      { label: 'Multas',      endpoint: 'multas',      idField: 'id_multa',      route: 'multas',      icon: '💲', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
-};
+  multas: { label: 'Multas', endpoint: 'multas', idField: 'id_multa', route: 'multas', icon: '💲', fields: [
+    { key: 'id_prestamo',      label: 'Préstamo',   type: 'select', required: true,
+      lookup: { endpoint: 'prestamos', valueKey: 'id_prestamo', labelKey: 'fecha_prestamo' } },
+    { key: 'id_ejemplar',      label: 'Ejemplar',   type: 'select', required: true,
+      lookup: { endpoint: 'ejemplares', valueKey: 'id_ejemplar', labelKey: 'codigo_inventario' } },
+    { key: 'fecha_prestamo',   label: 'Fecha de préstamo',   type: 'date', required: true },
+    { key: 'fecha_limite',     label: 'Fecha límite',        type: 'date', required: true },
+    { key: 'fecha_devolucion', label: 'Fecha de devolución', type: 'date', required: false },
+    { key: 'estado',           label: 'Estado',     type: 'text', required: true },
+  ] };
 
 export const ENTITY_LIST = Object.values(ENTITIES);
