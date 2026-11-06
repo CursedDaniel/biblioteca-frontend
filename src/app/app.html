@@ -1,1 +1,30 @@
-<router-outlet></router-outlet>
+<div class="shell" [class.collapsed]="collapsed()">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">B</span>
+      <span class="brand-name">Biblioteca</span>
+    </div>
+    <nav>
+      @for (e of entities; track e.route) {
+        <a [routerLink]="'/' + e.route" routerLinkActive="active" [attr.title]="e.label">
+          <span class="ico">{{ e.icon }}</span>
+          <span class="label">{{ e.label }}</span>
+        </a>
+      }
+    </nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button type="button" class="toggle" (click)="toggle()"
+              [attr.aria-expanded]="!collapsed()"
+              aria-label="Retraer o expandir el menú">
+        {{ collapsed() ? '»' : '«' }}
+      </button>
+      <h1>Panel de administración</h1>
+    </header>
+    <main class="content">
+      <router-outlet />
+    </main>
+  </div>
+</div>

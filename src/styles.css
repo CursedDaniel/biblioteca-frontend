@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #16302b;
+  --ink-text: #cfe3dc;
+  --accent: #f2b84b;
+  --paper: #f6f3ec;
+  --surface: #ffffff;
+  --line: #e3ddd0;
+  --danger: #b3382c;
+  --font-display: 'Fraunces', serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: #1d2a27;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
