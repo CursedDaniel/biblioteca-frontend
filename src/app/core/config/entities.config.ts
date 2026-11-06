@@ -65,7 +65,16 @@ export const ENTITIES: Record<string, EntityConfig> = {
     { key: 'id_editorial',      label: 'Editorial',           type: 'select', required: true,
       lookup: { endpoint: 'editoriales', valueKey: 'id_editorial', labelKey: 'nombre' } },
   ] },
-  prestamos:   { label: 'Préstamos',   endpoint: 'prestamos',   idField: 'id_prestamo',   route: 'prestamos',   icon: '🔄', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
+  prestamos: { label: 'Préstamos', endpoint: 'prestamos', idField: 'id_prestamo', route: 'prestamos', icon: '🔄', fields: [
+    { key: 'id_usuario',       label: 'Usuario',    type: 'select', required: true,
+      lookup: { endpoint: 'usuarios', valueKey: 'id_usuario', labelKey: 'nombre' } },
+    { key: 'id_ejemplar',      label: 'Ejemplar',   type: 'select', required: true,
+      lookup: { endpoint: 'ejemplares', valueKey: 'id_ejemplar', labelKey: 'codigo_inventario' } },
+    { key: 'fecha_prestamo',   label: 'Fecha de préstamo',   type: 'date', required: true },
+    { key: 'fecha_limite',     label: 'Fecha límite',        type: 'date', required: true },
+    { key: 'fecha_devolucion', label: 'Fecha de devolución', type: 'date', required: false },
+    { key: 'estado',           label: 'Estado',     type: 'text', required: true },
+  ] },
   multas:      { label: 'Multas',      endpoint: 'multas',      idField: 'id_multa',      route: 'multas',      icon: '💲', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
 };
 
