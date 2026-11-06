@@ -19,7 +19,15 @@ export interface EntityConfig {
 }
 
 export const ENTITIES: Record<string, EntityConfig> = {
-  usuarios:    { label: 'Usuarios',    endpoint: 'usuarios',    idField: 'id_usuario',    route: 'usuarios',    icon: '👤', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
+  usuarios: { label: 'Usuarios', endpoint: 'usuarios', idField: 'id_usuario', route: 'usuarios', icon: '👤', fields: [
+    { key: 'nombre',         label: 'Nombre',            type: 'text',  required: true },
+    { key: 'apellido',       label: 'Apellido',          type: 'text',  required: true },
+    { key: 'documento',      label: 'Cédula',            type: 'text',  required: true },
+    { key: 'correo',         label: 'Correo',            type: 'email', required: true },
+    { key: 'telefono',       label: 'Teléfono',          type: 'text',  required: true },
+    { key: 'fecha_registro', label: 'Fecha de registro', type: 'date',  required: true },
+    { key: 'estado',         label: 'Estado',            type: 'text',  required: true },
+  ] },
   autores:     { label: 'Autores',     endpoint: 'autores',     idField: 'id_autor',      route: 'autores',     icon: '✒️', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
   categorias:  { label: 'Categorías',  endpoint: 'categorias',  idField: 'id_categoria',  route: 'categorias',  icon: '🏷️', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
   editoriales: { label: 'Editoriales', endpoint: 'editoriales', idField: 'id_editorial',  route: 'editoriales', icon: '🏢', fields: [{ key: 'nombre', label: 'Nombre', type: 'text', required: true }] },
