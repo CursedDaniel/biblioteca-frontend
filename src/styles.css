@@ -20,4 +20,7 @@ body {
   background: var(--paper);
   color: var(--ink-text);
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 700;
 }
+
+button, input, select { font-weight: inherit; }

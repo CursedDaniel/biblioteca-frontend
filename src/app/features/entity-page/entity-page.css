@@ -20,7 +20,7 @@ tbody tr:hover { background: rgba(255, 255, 255, .08); }
 .panel { position: fixed; top: 0; right: 0; height: 100vh; width: min(420px, 100%); background: var(--surface);
          box-shadow: -12px 0 30px rgba(0,0,0,.5); padding: 1.25rem; overflow-y: auto; z-index: 10; }
 .panel header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-form label, dl { display: grid; gap: .3rem; margin-bottom: 1rem; font-weight: 500; }
+form label, dl { display: grid; gap: .3rem; margin-bottom: 1rem; }
 input, select { padding: .55rem .7rem; border: 1px solid var(--line); border-radius: 8px; font: inherit;
                 background: var(--paper); color: var(--ink-text); color-scheme: dark; }
 .row { display: flex; gap: .5rem; justify-content: flex-end; }
