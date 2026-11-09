@@ -1,6 +1,25 @@
 # BibliotecaFrontend
 
+Proyecto Hecho por: 
+Daniel Londoño
+Esteban Triana
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.5.
+
+## Video De Muestra 
+
+Funcionando en Local
+https://youtu.be/gcb1pRDgRZc
+
+## Como Ejecutar
+
+Se debe inicializar primero el backend con la base de datos 
+que esta en: https://github.com/CursedDaniel/Biblioteca.git
+usando el comando de bash: python -m uvicorn src.main:app --reload
+Luego se Ejecuta el Frontend usando los comandos de bash:
+ng build
+ng serve
+Luego ingresando de manera Local al buscador: http://localhost:4200/
+
 
 ## Development server
 
