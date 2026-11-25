@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --ink: #070c12;
+  --ink-text: #e6edf3;
+  --accent: #f2b84b;
+  --paper: #0f1720;
+  --surface: #172230;
+  --line: #2a3a4d;
+  --muted: #9fb0c0;
+  --danger: #ff8a7a;
+  --font-display: 'Fraunces', serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink-text);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 700;
+}
+
+button, input, select { font-weight: inherit; }

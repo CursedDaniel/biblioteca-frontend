@@ -1,69 +1,47 @@
-
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ApiListResponse, ApiResponse } from '../models/api.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class CrudService {
-
-  // Angular proporciona automáticamente una instancia de HttpClient.
   private http = inject(HttpClient);
+  private apiUrl = environment.apiUrl;
 
-  // Dirección base de FastAPI.
-  private readonly apiUrl = environment.apiUrl.replace(/\/+$/, '');
   private collectionUrl(resource: string): string {
-    const cleanResource = resource.replace(/^\/+|\/+$/g, '');
-
-    return `${this.apiUrl}/${cleanResource}/`;
+    return `${this.apiUrl}/${resource.replace(/^\/+|\/+$/g, '')}/`;
   }
 
-  // Ejemplo: http://127.0.0.1:8000/libros/123
-  private itemUrl(resource: string, id: string | number): string {
-    const safeId = encodeURIComponent(String(id));
-
-    return `${this.collectionUrl(resource)}${safeId}`;
+  private itemUrl(resource: string, id: string): string {
+    return `${this.collectionUrl(resource)}${encodeURIComponent(id)}`;
   }
 
-  //1. GET: obtener todos los registros.
   getAll<T>(resource: string): Observable<T[]> {
-    return this.http.get<T[]>(this.collectionUrl(resource));
+    return this.http
+      .get<ApiListResponse<T>>(this.collectionUrl(resource))
+      .pipe(map(r => r.data));
   }
 
-  //2. GET: obtener un registro por su ID.
-  getById<T>(
-    resource: string,
-    id: string | number
-  ): Observable<T> {
-    return this.http.get<T>(this.itemUrl(resource, id));
+  getById<T>(resource: string, id: string): Observable<T> {
+    return this.http
+      .get<ApiResponse<T>>(this.itemUrl(resource, id))
+      .pipe(map(r => r.data));
   }
 
-  //3. POST: crear un registro.
-  create<T>(
-    resource: string,
-    data: Partial<T>
-  ): Observable<T> {
-    return this.http.post<T>(this.collectionUrl(resource), data);
+  create<T>(resource: string, body: unknown): Observable<T> {
+    return this.http
+      .post<ApiResponse<T>>(this.collectionUrl(resource), body)
+      .pipe(map(r => r.data));
   }
 
-  //4. PUT: actualizar un registro.
-  update<T>(
-    resource: string,
-    id: string | number,
-    data: Partial<T>
-  ): Observable<T> {
-    return this.http.put<T>(this.itemUrl(resource, id), data);
+  update<T>(resource: string, id: string, body: unknown): Observable<T> {
+    return this.http
+      .put<ApiResponse<T>>(this.itemUrl(resource, id), body)
+      .pipe(map(r => r.data));
   }
 
-  //5. DELETE: eliminar un registro.
-  delete(
-    resource: string,
-    id: string | number
-  ): Observable<void> {
-    return this.http.delete<void>(this.itemUrl(resource, id));
+  delete(resource: string, id: string): Observable<unknown> {
+    return this.http.delete(this.itemUrl(resource, id));
   }
 }
-
